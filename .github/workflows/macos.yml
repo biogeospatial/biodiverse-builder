@@ -96,7 +96,7 @@ jobs:
 
       - name: Cache CPAN modules
         uses: actions/cache@v6
-        if: "!cancelled()"
+        if: always() 
         with:
           path: ~/perl5
           key: ${{ runner.os }}-build-${{ hashFiles('perlversion.txt') }}
@@ -269,7 +269,7 @@ jobs:
           path: ./probe_gdal
           
       - name: Reinstate ~/perl5 for caching
-        if: "!cancelled()"
+        if: always()
         run: |
           [[ -d ~/perl5x ]] && mv ~/perl5x ~/perl5
           ls ~
